@@ -31,9 +31,13 @@ async def on_message(message):
     if message.guild:
         return
     if not message.guild:
-        query = message.content
-        response = gpt3(query)
-        await message.author.send(response)
-        print(response)
+        if message.author.bot:
+            return
+        else:
+            async with message.channel.typing():
+                await asyncio.sleep(2)
+                query = message.content
+                response = GPT(query)
+                await message.author.send(response)
 
 bot.run("") #TOKEN
