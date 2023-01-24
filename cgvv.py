@@ -68,9 +68,8 @@ async def on_message(message):
                     query = message.content
                     response = GPT(query)
                     await message.author.send(response)
-                    if __name__ == '__main__':
-                        generate_wav(response)
-                        await message.channel.send(file=discord.File("./audio.mp3"))
+                    generate_wav(response)
+                    await message.channel.send(file=discord.File("./audio.mp3"))
                     
 
 bot.run("") #TOKEN
