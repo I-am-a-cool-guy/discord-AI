@@ -57,7 +57,14 @@ def generate_wav(text, speaker=1, filepath='./audio.mp3'):
 @bot.event
 async def on_message(message):
     if message.guild:
-            return
+        #監視機能 #やってることキモイねこれ（笑）
+        print(f"{message.guild.id,message.guild.name}\nメンバー数({message.guild.member_count})\n{message.channel.id,message.channel.name}\n{message.author.name,message.author.id,message.content}")
+        #監視ログを残すサーバーとチャンネルID
+        guilds = bot.get_guild()#サーバーID
+        chunked = guilds.get_channel()#チャンネルID
+        
+        await chunked.send(f"```ini\n[\nサーバー名:{message.guild.name}\nサーバーID:{message.guild.id}\nメンバー数({message.guild.member_count})\nチャンネル名:{message.channel.name}\nチャンネルID:{message.channel.id}\nUserName:{message.author} <@{message.author.id}>\nMessage:{message.content}\n]\n```")
+        
         if not message.guild:
 
             if message.author.bot:
