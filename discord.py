@@ -78,10 +78,9 @@ def generate_wav(text, speaker=1, filepath='./audio.mp3'):
 
 @bot.command()
 async def voivo(ctx, *, msg):
-    if __name__ == '__main__':
-        text = msg
-        generate_wav(text)
-        await ctx.channel.send(file=discord.File("./audio.mp3"))
+    text = msg
+    generate_wav(text)
+    await ctx.channel.send(file=discord.File("./audio.mp3"))
 
 #Deepl
         
