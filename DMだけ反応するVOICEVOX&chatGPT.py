@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix=["!",""],intents=intents)
 bot.remove_command("help")
 
 def GPT(stext):
-    openai.api_key = AI_API_KEY
+    openai.api_key = API_KEY
 
     response = openai.Completion.create(
         engine='text-davinci-003',
@@ -75,4 +75,4 @@ async def on_message(message):
                     
 
 bot.run("") #TOKEN
-AI_API_KEY = "" #OpenAI's APIKEY
+API_KEY = "" #OpenAI's APIKEY
