@@ -56,22 +56,22 @@ def generate_wav(text, speaker=1, filepath='./audio.mp3'):
 
 @bot.event
 async def on_message(message):
-if message.guild:
-        return
-    if not message.guild:
-
-        if message.author.bot:
+    if message.guild:
             return
-        else:
-            print(message.content)
-            async with message.channel.typing():
-                query = message.content
-                response = GPT(query)
-                await message.author.send(response)
-                if __name__ == '__main__':
-                    text = response
-                    generate_wav(text)
-                    await message.channel.send(file=discord.File("./audio.mp3"))
+        if not message.guild:
+
+            if message.author.bot:
+                return
+            else:
+                print(message.content)
+                async with message.channel.typing():
+                    query = message.content
+                    response = GPT(query)
+                    await message.author.send(response)
+                    if __name__ == '__main__':
+                        text = response
+                        generate_wav(text)
+                        await message.channel.send(file=discord.File("./audio.mp3"))
                     
 
 bot.run("") #TOKEN
