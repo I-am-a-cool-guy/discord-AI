@@ -56,17 +56,28 @@ def generate_wav(text, speaker=1, filepath='./audio.mp3'):
 
 @bot.event
 async def on_message(message):
-    if message.guild:
-        
-        if message.author.bot:
-            return
-        else:
-            print(message.content)
-            async with message.channel.typing():
+    if message.author.bot:
+        return
+    else:
+
+        if message.content == (">join<"):
+            await message.author.voice.channel.connect()
+            print(f"Join the {message.author.voice.channel}\n{message.author.name}")
+
+        if message.content == (">leave<"):
+            await message.guild.voice_client.disconnect()
+            await message.channel.send("切断しました。")
+        if message.guild:
+
+            CHANNEL_NAME = "chatgpt","voice"
+            if message.channel.name in CHANNEL_NAME:
                 response = GPT(message.content)
-                await message.author.send(response)
-                generate_wav(response)
+                await message.channel.send(response)
+                generate_wav2(response)
                 message.guild.voice_client.play(discord.FFmpegPCMAudio("audio.mp3"))
+
+                print(response)
+                print(f"{message.author.name} | {message.content}")
                     
 
 bot.run("") #TOKEN
