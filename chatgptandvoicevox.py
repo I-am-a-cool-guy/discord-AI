@@ -78,7 +78,17 @@ async def on_message(message):
 
                 print(response)
                 print(f"{message.author.name} | {message.content}")
-                    
+        
+        #direct message
+        if not message.guild:
+
+            async with message.channel.typing():
+                response = GPT(message.content)
+                print(response)
+                await message.author.send(response)
+                await asyncio.sleep(1)
+                generate_wav(response)
+                await message.channel.send(file=discord.File("./audio.mp3"))
 
 bot.run("") #TOKEN
 API_KEY = "" #OpenAI's APIKEY
@@ -87,3 +97,5 @@ API_KEY = "" #OpenAI's APIKEY
 #discord.py 2?
 #windows10 pro 
 #penis 14.5cm
+#voicevox起動せな動かんで！
+
