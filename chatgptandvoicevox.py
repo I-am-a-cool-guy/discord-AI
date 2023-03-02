@@ -73,8 +73,9 @@ async def on_message(message):
             if message.channel.name in CHANNEL_NAME:
                 response = GPT(message.content)
                 await message.channel.send(response)
-                generate_wav2(response)
-                message.guild.voice_client.play(discord.FFmpegPCMAudio("audio.mp3"))
+                if message.guild.voice_client:
+                    generate_wav2(response)
+                    message.guild.voice_client.play(discord.FFmpegPCMAudio("audio.mp3"))
 
                 print(response)
                 print(f"{message.author.name} | {message.content}")
