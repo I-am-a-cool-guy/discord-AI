@@ -28,7 +28,7 @@ def GPT(stext):
     print(content)
     return response.choices[0].text
 
-def generate_wav(text, speaker=1, filepath='./audio.mp3'):
+def generate_mp3(text, speaker=1, filepath='./audio.mp3'):
     host = 'localhost'
     port = 50021
     params = (
@@ -74,7 +74,7 @@ async def on_message(message):
                 response = GPT(message.content)
                 await message.channel.send(response)
                 if message.guild.voice_client:
-                    generate_wav2(response)
+                    generate_mp3(response)
                     message.guild.voice_client.play(discord.FFmpegPCMAudio("audio.mp3"))
 
                 print(response)
@@ -88,7 +88,7 @@ async def on_message(message):
                 print(response)
                 await message.author.send(response)
                 await asyncio.sleep(1)
-                generate_wav(response)
+                generate_mp3(response)
                 await message.channel.send(file=discord.File("./audio.mp3"))
 
 bot.run("") #TOKEN
