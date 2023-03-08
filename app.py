@@ -18,11 +18,11 @@ def GPT(stext):
     response = openai.Completion.create(
         engine='text-davinci-003',
         prompt=stext,
-            max_tokens=320,#number of characters
-            temperature=0.1,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
+        max_tokens=320,
+        temperature=0.1,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
     )
     content = response.choices[0].text.split('.')
     print(content)
@@ -93,10 +93,4 @@ async def on_message(message):
 
 bot.run("") #TOKEN
 API_KEY = "" #OpenAI's APIKEY
-
-#python v 3.7.4
-#discord.py 2?
-#windows10 pro 
-#penis 14.5cm
-#voicevox起動せな動かんで！
 
